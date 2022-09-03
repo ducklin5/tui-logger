@@ -1042,7 +1042,7 @@ impl<'b> Widget for TuiLoggerWidget<'b> {
             let opt_timestamp_bottom = state.opt_timestamp_bottom;
             let mut opt_timestamp_prev_page = None;
             let mut tui_lock = TUI_LOGGER.inner.lock();
-            let mut circular = CircularBuffer::new(10); // MAGIC constant
+            let mut circular = CircularBuffer::new(1000); // MAGIC constant
             for evt in tui_lock.events.rev_iter() {
                 if let Some(level) = state.config.get(&evt.target) {
                     if *level < evt.level {
